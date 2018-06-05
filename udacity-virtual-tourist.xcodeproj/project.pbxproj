@@ -13,6 +13,7 @@
 		A53B7E5320C6E3880005D21F /* udacity_virtual_tourist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A53B7E5120C6E3880005D21F /* udacity_virtual_tourist.xcdatamodeld */; };
 		A53B7E5520C6E3890005D21F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53B7E5420C6E3890005D21F /* Assets.xcassets */; };
 		A53B7E5820C6E3890005D21F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53B7E5620C6E3890005D21F /* LaunchScreen.storyboard */; };
+		A53B7E6120C6E67B0005D21F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B7E6020C6E67B0005D21F /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A53B7E5420C6E3890005D21F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A53B7E5720C6E3890005D21F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A53B7E5920C6E3890005D21F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A53B7E6020C6E67B0005D21F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		A53B7E4920C6E3880005D21F /* udacity-virtual-tourist */ = {
 			isa = PBXGroup;
 			children = (
+				A53B7E5F20C6E66C0005D21F /* Model */,
 				A53B7E4A20C6E3880005D21F /* AppDelegate.swift */,
 				A53B7E4C20C6E3880005D21F /* ViewController.swift */,
 				A53B7E4E20C6E3880005D21F /* Main.storyboard */,
@@ -65,6 +68,14 @@
 				A53B7E5120C6E3880005D21F /* udacity_virtual_tourist.xcdatamodeld */,
 			);
 			path = "udacity-virtual-tourist";
+			sourceTree = "<group>";
+		};
+		A53B7E5F20C6E66C0005D21F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A53B7E6020C6E67B0005D21F /* DataController.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53B7E4D20C6E3880005D21F /* ViewController.swift in Sources */,
+				A53B7E6120C6E67B0005D21F /* DataController.swift in Sources */,
 				A53B7E5320C6E3880005D21F /* udacity_virtual_tourist.xcdatamodeld in Sources */,
 				A53B7E4B20C6E3880005D21F /* AppDelegate.swift in Sources */,
 			);

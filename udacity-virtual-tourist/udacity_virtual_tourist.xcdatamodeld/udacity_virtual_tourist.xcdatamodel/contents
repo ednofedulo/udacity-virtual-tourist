@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Album" representedClassName="Album" syncable="YES" codeGenerationType="class">
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photography" inverseName="album" inverseEntity="Photography" syncable="YES"/>
+        <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pin" inverseName="album" inverseEntity="Pin" syncable="YES"/>
+    </entity>
+    <entity name="Photography" representedClassName="Photography" syncable="YES" codeGenerationType="class">
+        <relationship name="album" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="photos" inverseEntity="Album" syncable="YES"/>
+    </entity>
+    <entity name="Pin" representedClassName="Pin" syncable="YES" codeGenerationType="class">
+        <relationship name="album" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="pin" inverseEntity="Album" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Pin" positionX="-758" positionY="-385" width="128" height="58"/>
+        <element name="Album" positionX="-542" positionY="-378" width="119" height="73"/>
+        <element name="Photography" positionX="-324" positionY="-367" width="128" height="58"/>
+    </elements>
 </model>
