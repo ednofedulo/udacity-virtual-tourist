@@ -50,11 +50,51 @@
                     <navigationItem key="navigationItem" id="NH1-gb-mny"/>
                     <connections>
                         <outlet property="mapView" destination="zdI-UM-EDO" id="RZA-UV-h4c"/>
+                        <segue destination="ELr-gd-rmk" kind="show" identifier="showDetailSegue" id="trm-XG-v82"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQg-vv-woN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="391" y="62"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="ts2-2D-qrc">
+            <objects>
+                <viewController id="ELr-gd-rmk" customClass="DetailViewController" customModule="udacity_virtual_tourist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ND3-0u-4E2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-5S-Pee">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="D38-f6-Ojd">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="286"/>
+                                    </mapView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XYv-tT-MEe">
+                                        <rect key="frame" x="0.0" y="286" width="375" height="287"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u53-Iq-CKQ">
+                                        <rect key="frame" x="0.0" y="573" width="375" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6vs-5S-Pee" firstAttribute="leading" secondItem="idZ-Ag-Rlk" secondAttribute="leading" id="YOk-oM-5ba"/>
+                            <constraint firstItem="6vs-5S-Pee" firstAttribute="bottom" secondItem="idZ-Ag-Rlk" secondAttribute="bottom" id="jSV-hY-Uvp"/>
+                            <constraint firstItem="6vs-5S-Pee" firstAttribute="top" secondItem="idZ-Ag-Rlk" secondAttribute="top" id="qZj-Q8-Gf7"/>
+                            <constraint firstItem="6vs-5S-Pee" firstAttribute="trailing" secondItem="idZ-Ag-Rlk" secondAttribute="trailing" id="xez-gO-ngw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="idZ-Ag-Rlk"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UkX-Ch-7Mr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1336.8" y="61.619190404797607"/>
         </scene>
     </scenes>
 </document>

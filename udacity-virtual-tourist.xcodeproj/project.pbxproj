@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A52CDCFD20D8656E00DC337F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CDCFC20D8656E00DC337F /* DetailViewController.swift */; };
 		A53B7E4B20C6E3880005D21F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B7E4A20C6E3880005D21F /* AppDelegate.swift */; };
 		A53B7E4D20C6E3880005D21F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B7E4C20C6E3880005D21F /* MapViewController.swift */; };
 		A53B7E5020C6E3880005D21F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53B7E4E20C6E3880005D21F /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A52CDCFC20D8656E00DC337F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A53B7E4720C6E3880005D21F /* udacity-virtual-tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "udacity-virtual-tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53B7E4A20C6E3880005D21F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A53B7E4C20C6E3880005D21F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A52CDCFB20D8654F00DC337F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A53B7E4C20C6E3880005D21F /* MapViewController.swift */,
+				A52CDCFC20D8656E00DC337F /* DetailViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		A53B7E3E20C6E3880005D21F = {
 			isa = PBXGroup;
 			children = (
@@ -62,10 +73,10 @@
 		A53B7E4920C6E3880005D21F /* udacity-virtual-tourist */ = {
 			isa = PBXGroup;
 			children = (
+				A52CDCFB20D8654F00DC337F /* Controllers */,
 				A576A8CD20CC30B500290EEA /* Clients */,
 				A53B7E5F20C6E66C0005D21F /* Model */,
 				A53B7E4A20C6E3880005D21F /* AppDelegate.swift */,
-				A53B7E4C20C6E3880005D21F /* MapViewController.swift */,
 				A53B7E4E20C6E3880005D21F /* Main.storyboard */,
 				A53B7E5420C6E3890005D21F /* Assets.xcassets */,
 				A53B7E5620C6E3890005D21F /* LaunchScreen.storyboard */,
@@ -177,6 +188,7 @@
 				A53B7E5320C6E3880005D21F /* udacity_virtual_tourist.xcdatamodeld in Sources */,
 				A53B7E4B20C6E3880005D21F /* AppDelegate.swift in Sources */,
 				A573527F20CC608900D1BDB1 /* FlickrClient.swift in Sources */,
+				A52CDCFD20D8656E00DC337F /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

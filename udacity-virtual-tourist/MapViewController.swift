@@ -7,18 +7,27 @@
 //
 
 import UIKit
+import CoreData
 import MapKit
 
 class MapViewController: UIViewController {
 
     var dataController:DataController!
     let flickrClient = FlickrClient()
+    var pins:[Pin]?
     
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let fetchRequest:NSFetchRequest<Pin> = Pin.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        pins = try? dataController.viewContext.fetch(fetchRequest)
+        
         mapView.delegate = self
         configureMapGestureRecognizer()
+        loadPins()
     }
 
     func configureMapGestureRecognizer(){
@@ -28,7 +37,16 @@ class MapViewController: UIViewController {
     }
     
     func loadPins(){
-        
+        for pin in pins! {
+            let annotation = MKPointAnnotation()
+            
+            let lat = CLLocationDegrees(pin.latitude)
+            let long = CLLocationDegrees(pin.longitude)
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+
+            annotation.coordinate = coordinate
+            mapView.addAnnotation(annotation)
+        }
     }
 
     @objc
@@ -53,19 +71,26 @@ class MapViewController: UIViewController {
         
         pin.latitude = latitude
         pin.longitude = longitude
+        pin.creationDate = Date()
         
-        let _ = flickrClient.loadGallery(latitude: pin.latitude, longitude: pin.longitude) { (album) in
-            guard album.count == 21 else {
+        flickrClient.loadGallery(latitude: pin.latitude, longitude: pin.longitude) { (urls) in
+            guard urls.count == 21 else {
                 print("incorrect item count")
                 return
             }
             
-            for url in album {
-                print(url)
+            let album = Album(context: self.dataController.viewContext)
+            for url in urls {
+                let photo = Photo(context: self.dataController.viewContext)
+                photo.url = url.absoluteString
+                photo.image = try? Data(contentsOf: url)
+                
+                album.addToPhotos(photo)
             }
+            
+            pin.album = album
+            try? self.dataController.viewContext.save()
         }
-        
-        try? dataController.viewContext.save()
     }
 
 }
