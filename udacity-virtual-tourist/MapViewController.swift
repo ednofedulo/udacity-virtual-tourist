@@ -73,22 +73,33 @@ class MapViewController: UIViewController {
         pin.longitude = longitude
         pin.creationDate = Date()
         
+        try? dataController.viewContext.save()
+        
         flickrClient.loadGallery(latitude: pin.latitude, longitude: pin.longitude) { (urls) in
             guard urls.count == 21 else {
                 print("incorrect item count")
                 return
             }
+            let backgroundContext:NSManagedObjectContext! = self.dataController?.backgroundContext
             
             let album = Album(context: self.dataController.viewContext)
-            for url in urls {
-                let photo = Photo(context: self.dataController.viewContext)
-                photo.url = url.absoluteString
-                photo.image = try? Data(contentsOf: url)
-                
-                album.addToPhotos(photo)
+            pin.album = album
+            
+            try? self.dataController.viewContext.save()
+            
+            let albumId = album.objectID
+            
+            self.dataController.backgroundContext.perform {
+                let bgAlbum = backgroundContext.object(with: albumId) as! Album
+                for url in urls {
+                    let photo = Photo(context: self.dataController.viewContext)
+                    photo.url = url.absoluteString
+                    photo.image = try? Data(contentsOf: url)
+                    bgAlbum.addToPhotos(photo)
+                }
+                try? backgroundContext.save()
             }
             
-            pin.album = album
             try? self.dataController.viewContext.save()
         }
     }
