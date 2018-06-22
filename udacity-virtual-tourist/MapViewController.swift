@@ -38,13 +38,15 @@ class MapViewController: UIViewController {
     
     func loadPins(){
         for pin in pins! {
-            let annotation = MKPointAnnotation()
+            let annotation = CustomMKPointAnnotation()
             
             let lat = CLLocationDegrees(pin.latitude)
             let long = CLLocationDegrees(pin.longitude)
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
 
             annotation.coordinate = coordinate
+            annotation.objectID = pin.objectID
+            
             mapView.addAnnotation(annotation)
         }
     }
@@ -103,13 +105,30 @@ class MapViewController: UIViewController {
             try? self.dataController.viewContext.save()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let annotation = sender as! CustomMKPointAnnotation
+        
+        let pin = dataController.viewContext.object(with: annotation.objectID!) as! Pin
+        
+        var detailVc:DetailViewController = segue.destination as! DetailViewController
+        
+        detailVc.pin = pin
+    }
 
 }
 
 extension MapViewController: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let annotation = view.annotation as! CustomMKPointAnnotation
         
+        performSegue(withIdentifier: "showDetailSegue", sender: annotation)
+    }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let annotation = view.annotation as! CustomMKPointAnnotation
+        
+        performSegue(withIdentifier: "showDetailSegue", sender: annotation)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -117,7 +136,7 @@ extension MapViewController: MKMapViewDelegate {
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKPinAnnotationView
         if(pinView == nil) {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
-            pinView!.canShowCallout = true
+            pinView!.canShowCallout = false
             pinView!.animatesDrop = true
         }
         return pinView

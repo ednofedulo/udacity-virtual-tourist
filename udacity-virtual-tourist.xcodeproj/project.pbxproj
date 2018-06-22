@@ -17,6 +17,7 @@
 		A53B7E6120C6E67B0005D21F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B7E6020C6E67B0005D21F /* DataController.swift */; };
 		A573527F20CC608900D1BDB1 /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573527E20CC608900D1BDB1 /* FlickrClient.swift */; };
 		A576A8CF20CC532100290EEA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A576A8CE20CC532100290EEA /* Constants.swift */; };
+		A5AE119A20DC775C00CC3BE6 /* CustomMKPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE119920DC775C00CC3BE6 /* CustomMKPointAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		A53B7E6020C6E67B0005D21F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A573527E20CC608900D1BDB1 /* FlickrClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
 		A576A8CE20CC532100290EEA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A5AE119920DC775C00CC3BE6 /* CustomMKPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPointAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				A53B7E5620C6E3890005D21F /* LaunchScreen.storyboard */,
 				A53B7E5920C6E3890005D21F /* Info.plist */,
 				A53B7E5120C6E3880005D21F /* udacity_virtual_tourist.xcdatamodeld */,
+				A5AE119920DC775C00CC3BE6 /* CustomMKPointAnnotation.swift */,
 			);
 			path = "udacity-virtual-tourist";
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5AE119A20DC775C00CC3BE6 /* CustomMKPointAnnotation.swift in Sources */,
 				A576A8CF20CC532100290EEA /* Constants.swift in Sources */,
 				A53B7E4D20C6E3880005D21F /* MapViewController.swift in Sources */,
 				A53B7E6120C6E67B0005D21F /* DataController.swift in Sources */,
