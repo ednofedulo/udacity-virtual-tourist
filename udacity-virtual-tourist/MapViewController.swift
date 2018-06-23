@@ -60,15 +60,17 @@ class MapViewController: UIViewController {
         let location = press.location(in: mapView)
         let coordinates = mapView.convert(location, toCoordinateFrom: mapView)
         
-        let annotation = MKPointAnnotation()
+        let annotation = CustomMKPointAnnotation()
         annotation.coordinate = coordinates
         
-        savePin(latitude: Float(coordinates.latitude), longitude: Float(coordinates.longitude))
+        let objId = savePin(latitude: Float(coordinates.latitude), longitude: Float(coordinates.longitude))
+        
+        annotation.objectID = objId
         
         mapView.addAnnotation(annotation)
     }
     
-    func savePin(latitude:Float, longitude:Float){
+    func savePin(latitude:Float, longitude:Float) -> NSManagedObjectID{
         let pin = Pin(context: dataController.viewContext)
         
         pin.latitude = latitude
@@ -94,16 +96,22 @@ class MapViewController: UIViewController {
             self.dataController.backgroundContext.perform {
                 let bgAlbum = backgroundContext.object(with: albumId) as! Album
                 for url in urls {
-                    let photo = Photo(context: self.dataController.viewContext)
+                    let photo = Photo(context: backgroundContext)
                     photo.url = url.absoluteString
-                    photo.image = try? Data(contentsOf: url)
+                    //print("loading image from \(photo.url)")
+                    photo.image = UIImagePNGRepresentation(#imageLiteral(resourceName: "image-placeholder"))
+                    //print("loaded image from \(photo.url)")
                     bgAlbum.addToPhotos(photo)
+                    try? backgroundContext.save()
                 }
-                try? backgroundContext.save()
+                
+                print("finished loop")
             }
             
             try? self.dataController.viewContext.save()
         }
+        
+        return pin.objectID
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,7 +119,7 @@ class MapViewController: UIViewController {
         
         let pin = dataController.viewContext.object(with: annotation.objectID!) as! Pin
         
-        var detailVc:DetailViewController = segue.destination as! DetailViewController
+        let detailVc:DetailViewController = segue.destination as! DetailViewController
         
         detailVc.pin = pin
     }
@@ -120,11 +128,6 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let annotation = view.annotation as! CustomMKPointAnnotation
-        
-        performSegue(withIdentifier: "showDetailSegue", sender: annotation)
-    }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let annotation = view.annotation as! CustomMKPointAnnotation
         

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A51D75E820DDADEB00685C44 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51D75E720DDADEB00685C44 /* CustomCollectionViewCell.swift */; };
 		A52CDCFD20D8656E00DC337F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52CDCFC20D8656E00DC337F /* DetailViewController.swift */; };
 		A53B7E4B20C6E3880005D21F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B7E4A20C6E3880005D21F /* AppDelegate.swift */; };
 		A53B7E4D20C6E3880005D21F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B7E4C20C6E3880005D21F /* MapViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A51D75E720DDADEB00685C44 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		A52CDCFC20D8656E00DC337F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A53B7E4720C6E3880005D21F /* udacity-virtual-tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "udacity-virtual-tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53B7E4A20C6E3880005D21F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				A53B7E5920C6E3890005D21F /* Info.plist */,
 				A53B7E5120C6E3880005D21F /* udacity_virtual_tourist.xcdatamodeld */,
 				A5AE119920DC775C00CC3BE6 /* CustomMKPointAnnotation.swift */,
+				A51D75E720DDADEB00685C44 /* CustomCollectionViewCell.swift */,
 			);
 			path = "udacity-virtual-tourist";
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5AE119A20DC775C00CC3BE6 /* CustomMKPointAnnotation.swift in Sources */,
+				A51D75E820DDADEB00685C44 /* CustomCollectionViewCell.swift in Sources */,
 				A576A8CF20CC532100290EEA /* Constants.swift in Sources */,
 				A53B7E4D20C6E3880005D21F /* MapViewController.swift in Sources */,
 				A53B7E6120C6E67B0005D21F /* DataController.swift in Sources */,
