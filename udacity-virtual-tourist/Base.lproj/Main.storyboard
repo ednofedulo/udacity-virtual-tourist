@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-470" y="62"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Virtual Tourist-->
         <scene sceneID="sd4-fL-7SB">
             <objects>
                 <viewController id="7gl-ru-ib3" customClass="MapViewController" customModule="udacity_virtual_tourist" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,25 +37,55 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zdI-UM-EDO">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sY8-c3-JSq">
+                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Pins to Delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBq-He-oVD">
+                                        <rect key="frame" x="80.5" y="33.5" width="214" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bBq-He-oVD" firstAttribute="centerY" secondItem="sY8-c3-JSq" secondAttribute="centerY" id="3lY-xM-8yG"/>
+                                    <constraint firstItem="bBq-He-oVD" firstAttribute="centerX" secondItem="sY8-c3-JSq" secondAttribute="centerX" id="OXB-EO-iGp"/>
+                                    <constraint firstAttribute="height" constant="100" id="e4w-bq-b3A"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="sY8-c3-JSq" firstAttribute="leading" secondItem="zdI-UM-EDO" secondAttribute="leading" id="3Vo-7E-Hhg"/>
                             <constraint firstItem="zdI-UM-EDO" firstAttribute="trailing" secondItem="oKO-Rv-BtD" secondAttribute="trailing" id="9Q2-bP-ovo"/>
                             <constraint firstItem="zdI-UM-EDO" firstAttribute="top" secondItem="oKO-Rv-BtD" secondAttribute="top" id="cMV-k7-ZRZ"/>
                             <constraint firstItem="zdI-UM-EDO" firstAttribute="bottom" secondItem="oKO-Rv-BtD" secondAttribute="bottom" id="jre-lG-vWS"/>
+                            <constraint firstItem="sY8-c3-JSq" firstAttribute="bottom" secondItem="oKO-Rv-BtD" secondAttribute="bottom" id="mI8-RX-hgL"/>
                             <constraint firstItem="zdI-UM-EDO" firstAttribute="leading" secondItem="oKO-Rv-BtD" secondAttribute="leading" id="pXA-QV-vVU"/>
+                            <constraint firstItem="sY8-c3-JSq" firstAttribute="trailing" secondItem="zdI-UM-EDO" secondAttribute="trailing" id="pZw-do-XQ1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oKO-Rv-BtD"/>
                     </view>
-                    <navigationItem key="navigationItem" id="NH1-gb-mny"/>
+                    <navigationItem key="navigationItem" title="Virtual Tourist" id="NH1-gb-mny">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="dOO-hh-IXb"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="6Uk-f1-EY8">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="7gl-ru-ib3" id="y2e-Hu-K9F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="6Uk-f1-EY8" id="Few-3p-Omc"/>
+                        <outlet property="editingModeMessage" destination="sY8-c3-JSq" id="cgc-k5-9T0"/>
                         <outlet property="mapView" destination="zdI-UM-EDO" id="RZA-UV-h4c"/>
                         <segue destination="ELr-gd-rmk" kind="show" identifier="showDetailSegue" id="trm-XG-v82"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQg-vv-woN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="391" y="62"/>
+            <point key="canvasLocation" x="389.60000000000002" y="61.619190404797607"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="ts2-2D-qrc">
@@ -71,7 +101,7 @@
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D38-f6-Ojd">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="253"/>
                                     </mapView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2e-hW-r3k">
+                                    <collectionView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" canCancelContentTouches="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2e-hW-r3k">
                                         <rect key="frame" x="0.0" y="253" width="375" height="320"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -93,7 +123,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZwF-ia-XZ7">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZwF-ia-XZ7">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="353"/>
                                                         </imageView>
                                                     </subviews>
@@ -115,7 +145,10 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="zuh-1J-kak"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Reload Gallery"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="ELr-gd-rmk" eventType="touchUpInside" id="iKf-Pu-7Mi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

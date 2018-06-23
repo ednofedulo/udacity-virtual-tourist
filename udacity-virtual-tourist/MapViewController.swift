@@ -15,8 +15,12 @@ class MapViewController: UIViewController {
     var dataController:DataController!
     let flickrClient = FlickrClient()
     var pins:[Pin]?
+    var editingMode:Bool = false
     
+    @IBOutlet weak var editingModeMessage: UIView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +55,29 @@ class MapViewController: UIViewController {
         }
     }
 
+    @IBAction func editButtonTapped(_ sender: Any) {
+        editingMode = !editingMode
+        
+        if editingMode {
+            UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: {
+                self.editingModeMessage.alpha = 1
+            }, completion: { _ in
+                self.editingModeMessage.isHidden = false
+            })
+            editButton.title = "Done"
+        } else {
+            UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: {
+                self.editingModeMessage.alpha = 0
+            }, completion: { _ in
+                self.editingModeMessage.isHidden = true
+            })
+            
+            editButton.title = "Edit"
+        }
+        
+        
+    }
+    
     @objc
     func addPin(press:UILongPressGestureRecognizer){
         if press.state != .began {
@@ -80,10 +107,7 @@ class MapViewController: UIViewController {
         try? dataController.viewContext.save()
         
         flickrClient.loadGallery(latitude: pin.latitude, longitude: pin.longitude) { (urls) in
-            guard urls.count == 21 else {
-                print("incorrect item count")
-                return
-            }
+            
             let backgroundContext:NSManagedObjectContext! = self.dataController?.backgroundContext
             
             let album = Album(context: self.dataController.viewContext)
@@ -98,9 +122,7 @@ class MapViewController: UIViewController {
                 for url in urls {
                     let photo = Photo(context: backgroundContext)
                     photo.url = url.absoluteString
-                    //print("loading image from \(photo.url)")
-                    photo.image = UIImagePNGRepresentation(#imageLiteral(resourceName: "image-placeholder"))
-                    //print("loaded image from \(photo.url)")
+                    
                     bgAlbum.addToPhotos(photo)
                     try? backgroundContext.save()
                 }
@@ -122,6 +144,7 @@ class MapViewController: UIViewController {
         let detailVc:DetailViewController = segue.destination as! DetailViewController
         
         detailVc.pin = pin
+        detailVc.dataController = dataController
     }
 
 }
@@ -131,7 +154,16 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let annotation = view.annotation as! CustomMKPointAnnotation
         
-        performSegue(withIdentifier: "showDetailSegue", sender: annotation)
+        if editingMode {
+            
+            let pin = dataController.viewContext.object(with: annotation.objectID!) as! Pin
+            mapView.removeAnnotation(annotation)
+            dataController.viewContext.delete(pin)
+            try? dataController.viewContext.save()
+            
+        } else {
+            performSegue(withIdentifier: "showDetailSegue", sender: annotation)
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

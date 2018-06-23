@@ -195,7 +195,7 @@ class FlickrClient {
                 displayError("No Photos Found. Search Again.")
                 return
             } else {
-                let randomPhotoIndexes = self.uniqueRandoms(numberOfRandoms: 21, minNum: 0, maxNum: photosArray.count)
+                let randomPhotoIndexes = self.uniqueRandoms(numberOfRandoms: min(21, photosArray.count), minNum: 0, maxNum: photosArray.count-1)
                 var count = 0
                 var gallery = [URL]()
                 for index in randomPhotoIndexes {
